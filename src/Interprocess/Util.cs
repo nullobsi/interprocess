@@ -25,7 +25,7 @@ internal static class Util
         {
         }
 
-        if (isLinux || IsWine)
+        if (isLinux)
             MemoryFilePath = Path.GetFullPath(Path.Combine(LINUX_SHM_DIR, ".cloudtoid", "interprocess", "mmf"));
         else
             MemoryFilePath = Path.GetTempPath();

@@ -25,7 +25,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="runtimes/win-x64/native/shmbridge.dll.so" Pack="true" PackagePath="runtimes/win-x64/native/" />
+    <None Include="runtimes/win-x64/native/shmbridge.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
+    <None Include="runtimes/win-x64/native/shmbridge.so" Pack="true" PackagePath="runtimes/win-x64/native/" />
   </ItemGroup>
 
 </Project>
