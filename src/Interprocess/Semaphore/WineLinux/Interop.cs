@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using Cloudtoid.Interprocess.Semaphore.Posix;
 
-namespace Cloudtoid.Interprocess.Semaphore.Wine;
+namespace Cloudtoid.Interprocess.Semaphore.WineLinux;
 
 internal static partial class Interop
 {
@@ -22,12 +22,14 @@ internal static partial class Interop
     private const int EOVERFLOW = 75;    // The maximum allowable value for a semaphore would be exceeded.
     private const int ETIMEDOUT = 110;   // The call timed out before the semaphore could be locked.
 
+    private static readonly IntPtr SemFailed = new(-1);
+
     private static unsafe int Error => Marshal.GetLastWin32Error();
 
     internal static IntPtr CreateOrOpenSemaphore(string name, uint initialCount)
     {
         var handle = SemaphoreOpen(name, OCREAT, (uint)PosixFilePermissions.ACCESSPERMS, initialCount);
-        if (handle != IntPtr.Zero)
+        if (handle != SemFailed)
             return handle;
 
         int err = Error;

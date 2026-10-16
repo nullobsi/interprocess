@@ -38,7 +38,7 @@ public sealed class MemoryView : IDisposable
         bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
         bool isDefaultPath = options.Path == Util.MemoryFilePath;
 
-        if (isWindows && isDefaultPath && !Util.IsWine)
+        if (isWindows && isDefaultPath && !(Util.IsWineUnderMacOS || Util.IsWineUnderLinux ))
             file = new MemoryFileWindows(options);
         else
             file = new MemoryFileUnix(options, loggerFactory); // The Unix implementation actually appears compatible with Windows.
