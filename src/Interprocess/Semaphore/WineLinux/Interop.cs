@@ -22,7 +22,11 @@ internal static partial class Interop
     private const int EOVERFLOW = 75;    // The maximum allowable value for a semaphore would be exceeded.
     private const int ETIMEDOUT = 110;   // The call timed out before the semaphore could be locked.
 
-    private static readonly IntPtr SemFailed = new(-1);
+    // TODO: The older version of the library currently vendored returns
+    // nullptr when the semaphore could not have been opened. However,
+    // the new unixlib will use -1. So this needs to be changed if Linux
+    // switches to using unixlib in the future!
+    private static readonly IntPtr SemFailed = new(0);
 
     private static unsafe int Error => Marshal.GetLastWin32Error();
 
