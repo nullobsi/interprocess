@@ -9,6 +9,7 @@ internal static class Util
     internal static readonly bool IsMonoUnderLinux;
     internal static readonly bool IsWineUnderLinux;
     internal static readonly bool IsWineUnderMacOS;
+    internal static bool IsWine => IsWineUnderLinux || IsWineUnderMacOS;
     internal static readonly string MemoryFilePath;
 
     private const string LINUX_SHM_DIR = "/dev/shm";
